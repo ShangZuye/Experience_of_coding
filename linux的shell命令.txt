@@ -1,0 +1,19 @@
+Linux 下常用的shell命令
+
+1. cat filename 读取文本内容并在当前屏幕上显示
+
+2. cd  命令 改写目录
+	cd dirname  进入到下一级目录
+	cd / 切换到根目录（根目录就是啥都不包括了，包括c,d盘）
+	cd .. 返回上级目录
+	cd ../.. 返回上级的上级的目录
+	
+3. dir 显示当前目录  mkdir dirname 创建目录
+
+4. rm file 删除文件
+	rm -f file 删除时不进行提示
+	rm -rf dirname 删除某个目录
+	
+5.  vi命令
+	vi filename 编辑文件file 
+	输入i ，进入插入编辑模式， 按Esc退出编辑模式，到命令模式，输入 ：wq , 退出vi,回到主页面
