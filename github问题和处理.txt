@@ -1,0 +1,4 @@
+1.出现什么another git progress seems to running这种鬼玩意错误的情况：
+	原因是误点进编辑页面，不按规范方式推出出现的错误；
+	解决方法：用这个语句—— 
+		rm -f ./.git/index.lock
