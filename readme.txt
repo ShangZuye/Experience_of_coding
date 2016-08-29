@@ -12,5 +12,10 @@
 		git remote add origin git@github.com:ShangZuye/远程库名字.git
 		git push -u origin master
 		下次同步直接输入： git push origin master
+	（3）版本回退和返回的操作：
+		也就是想回退到某一个版本，回退到某个版本又后悔想回来的方法：
+		git reset --hard commit_id
+		回退时，用 git log （--pretty=oneline）确定回到那个版本号
+		重返未来，用 git reflog 	确定重返的版本号
 		
 		
