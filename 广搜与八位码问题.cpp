@@ -1,7 +1,22 @@
+//总结：
+//知识要点：
+//  1 两个转换：序号和排列的相互转换，字符型数组与整形数组的相互转换
+//  2 自己设计队列实现：判空， 入队， 出队
+//  3 状态转移方法：swithch
+//  4 广度搜索的算法步骤：队列判空 —> 判断符合目标需求 -> 节点拓展，入队（判重） -> 出队 ——
+//                       |————<———————————————————————————|
+//  5 利用 bitset 存储使用状态 ： .reset(); .set();
+//  6 字符数组的初始化和赋值问题，具体说：(unknown??)
+//			char sz4Moves[] = "udrl" ;
+//			GenPermulationByNum((char*)"012345678",strStatus,9,n);
+//			*(s2+i) = *(s1+perInt[i]);
+
 #include<iostream>
 #include<bitset> //新用法
 #include<cstring>
 using namespace std;
+
+
 int goalStatus;  //目标状态
 bitset<362880> Flags;  //节点是否拓展的标记
 const int MAXS = 400000;
@@ -16,7 +31,7 @@ struct Node{
 };
 Node myQueue[MAXS]; //状态队列，状态总数362880 （不用STL的顾虑是啥？）
 int qHead; int qTail;  //队头指针和队尾指针
-char sz4Moves[]= "udrl"; //四种动作
+char sz4Moves[]= "udrl"; //四种动作      （  研究一下字符数组的初始化 ！！！）
 unsigned int factorial[21]; //存放0-20的阶乘。 21的阶乘unsigned放不下
 
 unsigned int GetPermulationNumForInt(int * perInt, int len){
@@ -45,13 +60,14 @@ unsigned int GetPermulationNum(T s1, T s2, int len){
 	int *perInt= new int[len];//要转换成[0,len-1]的整数
 	  //new 生成可动态变化的动态数组
 	 //由字符形式的存储转化为整型
-	for(int i=0;i<len;++i)
+	for(int i=0;i<len;++i){
 		for(int j=0;j<len;++j){
 			if(*(s2+i) == *(s1+j)){
 				perInt[i] = j;
 				break;
 			}
 		}
+	}
 		unsigned int num = GetPermulationNumForInt(perInt,len);
 		delete [] perInt;
 		return num;
@@ -76,8 +92,8 @@ void GenPermulationByNum(T s1, T s2, int len, unsigned int No){
 	}
 	for(int i=0;i<len;++i)
 		*(s2+i) = *(s1+perInt[i]);
-	delete []perInt;
-	delete [] used;
+	//delete []perInt;
+	//delete [] used;
 }
 int StrStatusToIntStatus(const char* strStatus){
 	//字符串形式的状态，转换为整数形式的状态（排列序号）
@@ -86,7 +102,7 @@ int StrStatusToIntStatus(const char* strStatus){
 
 void IntStatusToStrStatus(int n, char *strStatus){
 	//整数形式的状态（排列序号），转换为字符串形式的状态
-	GenPermulationByNum((char*)"01234678",strStatus,9,n); //“012345678”是字符串形式，需要强制转换为字符数组！！！
+	GenPermulationByNum((char*)"012345678",strStatus,9,n); //“012345678”是字符串形式，需要强制转换为字符数组！！！
 }
 
 int NewStatus(int nStatus, char cMove){
